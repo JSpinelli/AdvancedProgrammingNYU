@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
     public void OnGoalScored(AGPEvent e)
     {
         ball.transform.position = new Vector3();
+        ball.transform.rotation = Quaternion.Euler(new Vector3(0f,0f,0f));
+        ball.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        ball.GetComponent<Rigidbody2D>().angularVelocity = 0f;
     }
     // public void OnTimeOut(AGPEvent e)
     // {

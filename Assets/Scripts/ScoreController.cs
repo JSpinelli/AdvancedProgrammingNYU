@@ -8,6 +8,8 @@ public class ScoreController : MonoBehaviour
 {
     public TextMeshProUGUI score;
     public TextMeshProUGUI starGame;
+    public TextMeshProUGUI winner;
+    public TextMeshProUGUI timerDisplay;
     private int player1Score = 0;
     private int player2Score = 0;
 
@@ -21,6 +23,8 @@ public class ScoreController : MonoBehaviour
         TimeForGame = Services.gameManager.durationOfMatch;
         starGame.enabled = true;
         score.enabled = false;
+        winner.enabled = false;
+        timerDisplay.enabled = false;
         timer = 0;
     }
 
@@ -33,11 +37,13 @@ public class ScoreController : MonoBehaviour
     private void Update()
     {
         if (Services.gameManager._fsm.CurrentState.GetType() != typeof(GameManager.GamePlaying)) return;
-        
+
         timer += Time.deltaTime;
+        timerDisplay.text = (TimeForGame - timer).ToString("F1");
         if (timer >= TimeForGame)
         {
             Services.EventManager.Fire(new GameEnd(player1Score > player2Score));
+            OnGameEnd();
         }
     }
 
@@ -45,9 +51,25 @@ public class ScoreController : MonoBehaviour
     {
         starGame.enabled = false;
         score.enabled = true;
+        winner.enabled = false;
+        timerDisplay.enabled = true;
         timer = 0;
+        player1Score = 0;
+        player2Score = 0;
     }
-    
+
+    private void OnGameEnd()
+    {
+        starGame.enabled = true;
+        score.enabled = false;
+        winner.enabled = true;
+        timerDisplay.enabled = false;
+        winner.text = player1Score > player2Score ? "Player 1 is the winner" : "Player 2 is the winner";
+        timer = 0;
+        player1Score = 0;
+        player2Score = 0;
+    }
+
 
     private void IncrementTeamScore(AGPEvent e)
     {

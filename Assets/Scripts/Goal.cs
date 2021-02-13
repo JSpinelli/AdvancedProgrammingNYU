@@ -8,6 +8,7 @@ public class Goal : MonoBehaviour
     public string owner;
     private void OnTriggerEnter2D(Collider2D other) {
         
+        if (Services.gameManager._fsm.CurrentState.GetType() != typeof(GameManager.GamePlaying)) return;
         if (other.gameObject.CompareTag("Ball")){
             Services.EventManager.Fire(new GoalScored(owner));
             //Old Version
