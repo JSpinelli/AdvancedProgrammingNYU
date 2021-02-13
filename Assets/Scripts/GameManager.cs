@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         startingZone = ball.transform.position;
-        Services.InitializeServices(this);
+        _InitializeServices();
     }
 
     // Update is called once per frame
@@ -30,6 +30,25 @@ public class GameManager : MonoBehaviour
         Services.player1.Move();
         Services.player2.Move();
     }
+
+    _InitializeServices() {
+		Services.GameManager = this;
+        Services.EventManager = new EventManager();
+        Services.EventManager.Register<GoalScored>(OnGoalScored);
+
+        Services.player1 = new PlayerControlled(player1, 10f, ball);
+        Services.player2 = new ForcePlayer(player2, 0.01f, ball);
+	}
+    
+    public void OnGoalScored(AGPEvent e)
+    {
+        var goalScoredWasBlue = ((GoalScored) e).blueTeamScored;
+        
+        Debug.Log("Goal was blue: " + goalScoredWasBlue);
+    }
+
+
+
 
     public void Score(string player){
         if (player == "Player 1"){

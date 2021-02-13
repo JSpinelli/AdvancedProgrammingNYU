@@ -1,13 +1,28 @@
 ﻿using UnityEngine;
 public static class Services {
-	
-	public static void InitializeServices(GameManager reference) {
-		Services.GameManager = reference;
-        Services.player1 = new PlayerControlled(reference.player1, 10f, reference.ball);
-        Services.player2 = new ForcePlayer(reference.player2, 0.01f, reference.ball);
-	}
 
-	public static GameManager GameManager;
+	private static GameController _gameController ;
+    public static GameController GameController
+    {
+        get
+        {
+            Debug.Assert(_gameController != null);
+            return _gameController;
+        }
+        set => _gameController = value;
+    }
+
 	public static Player player1;
 	public static Player player2;
+
+	private static EventManager _eventManager;
+    public static EventManager EventManager
+    {
+        get
+        {
+            Debug.Assert(_eventManager != null);
+            return _eventManager;
+        }
+        set => _eventManager = value;
+    }
 }
