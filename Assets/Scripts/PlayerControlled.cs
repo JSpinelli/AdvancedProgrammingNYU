@@ -3,11 +3,11 @@
 public class PlayerControlled : Player
 {
     Rigidbody2D rigidBody2D;
-    public PlayerControlled(GameObject pl, float speed, GameObject ball) : base(pl, speed, ball)
+    public PlayerControlled(GameObject pl, float speed) : base(pl, speed)
     {
         rigidBody2D = pl.GetComponent<Rigidbody2D>();
     }
-    public override void Move()
+    public override void Update()
     {
 
         if (Input.GetAxis("Vertical") != 0)
@@ -19,4 +19,28 @@ public class PlayerControlled : Player
             rigidBody2D.AddForce(new Vector2(Input.GetAxis("Horizontal") * speed, 0));
         }
     }
+    
+    //Using InputManager
+    // public override void Update()
+    // {
+    //     if (Services.Input.KeysDown.Contains(KeyCode.W))
+    //     {
+    //         rigidBody2D.AddForce(new Vector2(0, speed));
+    //     }
+    //
+    //     if (Services.Input.KeysDown.Contains(KeyCode.S))
+    //     {
+    //         rigidBody2D.AddForce(new Vector2(0, -speed));
+    //     }
+    //
+    //     if (Services.Input.KeysDown.Contains(KeyCode.A))
+    //     {
+    //         rigidBody2D.AddForce(new Vector2(-speed, 0));
+    //     }
+    //
+    //     if (Services.Input.KeysDown.Contains(KeyCode.D))
+    //     {
+    //         rigidBody2D.AddForce(new Vector2(speed, 0));
+    //     }
+    // }
 }

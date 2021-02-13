@@ -4,19 +4,33 @@ using UnityEngine;
 
 public abstract class Player
 {
-    protected GameObject playerAvatar;
+    protected GameObject _gameObject;
     protected float speed;
     protected GameObject ball;
 
     public Vector3 position;
+    public bool playerTeam;
 
-    protected Player(GameObject pl, float speed, GameObject ball){
-        playerAvatar = pl;
+    protected Player(GameObject pl, float speed){
+        _gameObject = pl;
         this.speed = speed;
-        this.ball = ball;
+        this.ball = Services.gameManager.ball;
         position = pl.transform.position;
-
     }
 
-    public abstract void Move();
+    public void SetTeam(bool team)
+    {
+        playerTeam = team;
+    }    
+    public void SetPosition(Vector3 pos)
+    {
+        position = pos;
+    }
+
+    public void Destroy()
+    {
+        UnityEngine.Object.Destroy(_gameObject);
+    }
+
+    public abstract void Update();
 }

@@ -75,9 +75,9 @@ public class GoalScored : AGPEvent
 {
 	public readonly bool team1;
 	
-	public GoalScored(bool team1)
+	public GoalScored(string goalOwner)
 	{
-		this.team1 = team1;
+		this.team1 = goalOwner != "Player 1";
 	}
 }
 

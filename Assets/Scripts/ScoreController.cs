@@ -6,17 +6,20 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    public TextMeshPro _displayedScore;
-    private int redScore, blueScore;
+    public TextMeshProUGUI score;
+    private int player1Score = 0;
+    private int player2Score = 0;
 
-    public float timer = 0;
-    public const float TimeForGame = 10.0f;
+    private float timer = 0;
+    private float TimeForGame = 10.0f;
 
     private void Start()
     {
         Services.EventManager.Register<GoalScored>(IncrementTeamScore);
         Services.EventManager.Register<GameStart>(OnGameStart);
         Services.EventManager.Register<GameEnd>(OnGameEnd);
+        TimeForGame = Services.gameManager.durationOfMatch;
+        timer = 0;
     }
 
     private void OnDestroy()
@@ -33,9 +36,6 @@ public class ScoreController : MonoBehaviour
         {
             Services.EventManager.Fire(new TimeOut());
         }
-
-        Debug.Log(timer);
-        _displayedScore.text = "RED TEAM: " + redScore + "\t\t\t\tBLUE TEAM: " + blueScore;
     }
 
     private void OnGameStart(AGPEvent e)
@@ -50,16 +50,18 @@ public class ScoreController : MonoBehaviour
 
     private void IncrementTeamScore(AGPEvent e)
     {
-        var goalScoredEvent = (GoalScored) e;
+        var team1 = ((GoalScored) e).team1;
         
-        if (goalScoredEvent.team1)
+        if (team1)
         {
-            redScore++;
+            player1Score++;
         }
         else
         {
-            blueScore++;
+            player2Score++;
         }
+
+        score.text = player1Score + " - " + player2Score;
             
     }
 }
