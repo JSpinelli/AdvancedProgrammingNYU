@@ -13,11 +13,12 @@ public class GameManager : MonoBehaviour
 
     private int player1Score = 0;
     private int player2Score = 0;
+    
+    public int PlayersPerTeam = 0;
 
     public float movementSpeed = 0.01f;
-
     private Vector3 startingZone;
-    // Start is called before the first frame update
+    
     void Start()
     {
         startingZone = ball.transform.position;
@@ -27,22 +28,40 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Services.player1.Move();
-        Services.player2.Move();
+        // Services.player1.Move();
+        // Services.player2.Move();
+        
+        Services.Input.Update();
+        Services.Players[0].Update();
+        Services.AIManager.Update();
+    }
+    
+    private void OnDestroy()
+    {
+        Services.AIManager.Destroy();
     }
 
-    _InitializeServices() {
-		Services.GameManager = this;
+    void _InitializeServices() {
+		Services.gameManager = this;
         Services.EventManager = new EventManager();
         Services.EventManager.Register<GoalScored>(OnGoalScored);
-
+        
+        Services.AIManager = new AIController();
+        Services.AIManager.Initialize();
+        
+        Services.Input = new InputManager();
+        
+        var playerGameObject = Instantiate(Resources.Load<GameObject>("Player"));
+        // Services.Players = new[] {new UserControlledPlayer(playerGameObject, new [] {KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D })};
+        Services.Players = new[] {new UserControlledPlayer(playerGameObject)};
+ 
         Services.player1 = new PlayerControlled(player1, 10f, ball);
         Services.player2 = new ForcePlayer(player2, 0.01f, ball);
 	}
     
     public void OnGoalScored(AGPEvent e)
     {
-        var goalScoredWasBlue = ((GoalScored) e).blueTeamScored;
+        var goalScoredWasBlue = ((GoalScored) e).team1;
         
         Debug.Log("Goal was blue: " + goalScoredWasBlue);
     }

@@ -8,10 +8,14 @@ public abstract class Player
     protected float speed;
     protected GameObject ball;
 
+    public Vector3 position;
+
     protected Player(GameObject pl, float speed, GameObject ball){
-        this.playerAvatar = pl;
+        playerAvatar = pl;
         this.speed = speed;
         this.ball = ball;
+        position = pl.transform.position;
+
     }
 
     public abstract void Move();

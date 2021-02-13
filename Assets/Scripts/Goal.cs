@@ -9,7 +9,7 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         
         if (other.gameObject.tag=="Ball"){
-            Services.GameManager.Score(owner);
+            Services.gameManager.Score(owner);
         }
     }
 }
