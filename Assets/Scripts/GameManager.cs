@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,38 +15,38 @@ public class GameManager : MonoBehaviour
     public float movementSpeed = 0.01f;
 
     public float durationOfMatch = 10f;
-    
+
     private Vector3 startingZone;
+
+    public FiniteStateMachine<GameManager> _fsm; 
 
     void _InitializeServices()
     {
         Services.gameManager = this;
         Services.EventManager = new EventManager();
         Services.EventManager.Register<GoalScored>(OnGoalScored);
-        Services.EventManager.Register<TimeOut>(OnGoalScored);
-        
-        Services.Players = new[] {new PlayerControlled(player1,10f)};
+        Services.EventManager.Register<GameEnd>(OnGoalScored);
+
+        Services.Players = new[] {new PlayerControlled(player1, 10f)};
         Services.AIManager = new AIController();
         Services.AIManager.Initialize();
 
         Services.Input = new InputManager();
-
-
     }
 
     void Awake()
     {
         startingZone = ball.transform.position;
         _InitializeServices();
+        _fsm = new FiniteStateMachine<GameManager>(this);
+        _fsm.TransitionTo<Menu>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // Services.player1.Move();
-        // Services.player2.Move();
-
-        Services.Input.Update();
+        _fsm.Update();
+        if (_fsm.CurrentState.GetType() != typeof(GamePlaying)) return;
         Services.Players[0].Update();
         Services.AIManager.Update();
     }
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
     public void OnGoalScored(AGPEvent e)
     {
         ball.transform.position = new Vector3();
-    }    
+    }
     // public void OnTimeOut(AGPEvent e)
     // {
     //     ball.transform.position = new Vector3();
@@ -68,4 +69,64 @@ public class GameManager : MonoBehaviour
     {
         ball.transform.position = startingZone;
     }
+
+    #region States
+
+    public abstract class GameState : FiniteStateMachine<GameManager>.State
+    {
+    }
+
+    public class Menu : GameState
+    {
+        public override void OnEnter()
+        {
+        }
+
+        public override void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TransitionTo<GamePlaying>();
+                Services.EventManager.Fire(new GameStart());
+            }
+        }
+
+        public override void OnExit()
+        {
+            
+        }
+    }
+
+    public class GamePlaying : GameState
+    {
+        public override void OnEnter()
+        {
+            Services.EventManager.Register<GameEnd>(OnTimeOut);
+        }
+
+        public void OnTimeOut(AGPEvent e)
+        {
+            TransitionTo<TitleScreen>();
+        }
+        
+        public override void OnExit()
+        {
+            Services.EventManager.Unregister<GameEnd>(OnTimeOut);
+        }
+
+    }
+
+    public class TitleScreen : GameState
+    {
+        public override void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TransitionTo<GamePlaying>();
+                Services.EventManager.Fire(new GameStart());
+            }
+        }
+    }
+
+    #endregion
 }

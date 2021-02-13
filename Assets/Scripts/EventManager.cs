@@ -94,5 +94,3 @@ public class GameEnd : AGPEvent
 	}
 }
 
-public class TimeOut : AGPEvent
-{}

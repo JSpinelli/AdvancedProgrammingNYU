@@ -7,6 +7,7 @@ using UnityEngine;
 public class ScoreController : MonoBehaviour
 {
     public TextMeshProUGUI score;
+    public TextMeshProUGUI starGame;
     private int player1Score = 0;
     private int player2Score = 0;
 
@@ -17,41 +18,41 @@ public class ScoreController : MonoBehaviour
     {
         Services.EventManager.Register<GoalScored>(IncrementTeamScore);
         Services.EventManager.Register<GameStart>(OnGameStart);
-        Services.EventManager.Register<GameEnd>(OnGameEnd);
         TimeForGame = Services.gameManager.durationOfMatch;
+        starGame.enabled = true;
+        score.enabled = false;
         timer = 0;
     }
 
     private void OnDestroy()
     {
         Services.EventManager.Unregister<GoalScored>(IncrementTeamScore);
+        Services.EventManager.Unregister<GameStart>(OnGameStart);
     }
 
     private void Update()
     {
-
+        if (Services.gameManager._fsm.CurrentState.GetType() != typeof(GameManager.GamePlaying)) return;
+        
         timer += Time.deltaTime;
-
         if (timer >= TimeForGame)
         {
-            Services.EventManager.Fire(new TimeOut());
+            Services.EventManager.Fire(new GameEnd(player1Score > player2Score));
         }
     }
 
     private void OnGameStart(AGPEvent e)
     {
+        starGame.enabled = false;
+        score.enabled = true;
         timer = 0;
     }
     
-    private void OnGameEnd(AGPEvent e)
-    {
-        timer = 0;
-    }
 
     private void IncrementTeamScore(AGPEvent e)
     {
         var team1 = ((GoalScored) e).team1;
-        
+
         if (team1)
         {
             player1Score++;
@@ -62,6 +63,5 @@ public class ScoreController : MonoBehaviour
         }
 
         score.text = player1Score + " - " + player2Score;
-            
     }
 }
