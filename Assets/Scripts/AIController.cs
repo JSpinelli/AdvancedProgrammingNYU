@@ -13,7 +13,8 @@ public class AIController
     public void Initialize()
     {
         _players = new List<Player>();
-        _players.Add(new ForcePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed));
+        //_players.Add(new ForcePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed));
+        _players.Add(new BehaviourTreePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed));
     }
 
     public Player GetClosestAI(Ball ball)
