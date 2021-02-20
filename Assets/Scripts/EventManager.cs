@@ -94,3 +94,12 @@ public class GameEnd : AGPEvent
 	}
 }
 
+public class PlayerCollision : AGPEvent
+{
+	public float severity;
+	public PlayerCollision(float force)
+	{
+		severity = force;
+	}
+}
+

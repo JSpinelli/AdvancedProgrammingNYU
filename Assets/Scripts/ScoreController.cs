@@ -36,7 +36,7 @@ public class ScoreController : MonoBehaviour
 
     private void Update()
     {
-        if (Services.gameManager._fsm.CurrentState.GetType() != typeof(GameManager.GamePlaying)) return;
+        if (!Services.gameManager.IsPlaying()) return;
 
         timer += Time.deltaTime;
         timerDisplay.text = (TimeForGame - timer).ToString("F1");

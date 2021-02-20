@@ -34,6 +34,17 @@ public static class Services {
         set => _ai = value;
     }
     
+    private static RefereeBehaviour _referee;
+    public static RefereeBehaviour RefereeBehaviour
+    {
+        get
+        {
+            Debug.Assert(_referee != null);
+            return _referee;
+        }
+        set => _referee = value;
+    }
+    
     private static PlayerControlled[] _players;
     public static PlayerControlled[] Players
     {

@@ -9,6 +9,6 @@ public class ForcePlayer : Player
     public override void Update(){
 
         Vector3 force = Vector3.Normalize(ball.transform.position - _gameObject.transform.position);
-        rigidBody2D.AddForce(force*10);
+        rigidBody2D.AddForce(force*Services.gameManager.movementSpeed);
     }
 }

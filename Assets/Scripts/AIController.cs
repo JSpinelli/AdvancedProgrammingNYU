@@ -13,7 +13,6 @@ public class AIController
     public void Initialize()
     {
         _players = new List<Player>();
-        //_CreateAIPlayers();
         _players.Add(new ForcePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed));
     }
 
@@ -54,25 +53,4 @@ public class AIController
     }
 
     #endregion
-
-    // private void _CreateAIPlayers()
-    // {
-    //     // Make blue players
-    //     for (var i = Services.Players.Count(player => player.playerTeam);
-    //         i < Services.gameManager.PlayersPerTeam;
-    //         i++)
-    //     {
-    //         var playerGameObject = Object.Instantiate(Resources.Load<GameObject>("Player"));
-    //         _players.Add(new SimplePlayer(playerGameObject,Services.gameManager.movementSpeed).SetTeam(true).SetPosition(Random.Range(0.0f, 8.0f), Random.Range(-4.0f, 4.0f), true));
-    //     }
-    //     
-    //     // Make red players
-    //     for (var i = Services.Players.Count(player => !player.playerTeam);
-    //         i < Services.gameManager.PlayersPerTeam;
-    //         i++)
-    //     {
-    //         var playerGameObject = Object.Instantiate(Resources.Load<GameObject>("Player"));
-    //         _players.Add(new SimplePlayer(playerGameObject,Services.gameManager.movementSpeed).SetTeam(false).SetPosition(Random.Range(0.0f, -8.0f), Random.Range(-4.0f, 4.0f), true));
-    //     }
-    // }
 }

@@ -9,10 +9,14 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public GameObject ball;
-
-    public int PlayersPerTeam = 0;
+    public GameObject referee;
 
     public float movementSpeed = 0.01f;
+    public float playerSpeed = 10f;
+
+    public float foulSeverity = 5f;
+    
+    public float refereeDistance = 1f;
 
     public float durationOfMatch = 10f;
 
@@ -27,11 +31,13 @@ public class GameManager : MonoBehaviour
         Services.EventManager.Register<GoalScored>(OnGoalScored);
         Services.EventManager.Register<GameEnd>(OnGoalScored);
 
-        Services.Players = new[] {new PlayerControlled(player1, 10f)};
+        Services.Players = new[] {new PlayerControlled(player1, playerSpeed)};
         Services.AIManager = new AIController();
         Services.AIManager.Initialize();
 
         Services.Input = new InputManager();
+
+        Services.RefereeBehaviour = new RefereeBehaviour(referee,refereeDistance);
     }
 
     void Awake()
@@ -46,9 +52,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         _fsm.Update();
-        if (_fsm.CurrentState.GetType() != typeof(GamePlaying)) return;
-        Services.Players[0].Update();
-        Services.AIManager.Update();
+        Services.RefereeBehaviour.Update();
+    }
+
+    public bool IsPlaying()
+    {
+        if (_fsm.CurrentState == null) return false;
+        return _fsm.CurrentState.GetType() == typeof(GamePlaying);
     }
 
     private void OnDestroy()
@@ -63,10 +73,6 @@ public class GameManager : MonoBehaviour
         ball.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         ball.GetComponent<Rigidbody2D>().angularVelocity = 0f;
     }
-    // public void OnTimeOut(AGPEvent e)
-    // {
-    //     ball.transform.position = new Vector3();
-    // }
 
     public void Restart()
     {
@@ -105,6 +111,12 @@ public class GameManager : MonoBehaviour
         public override void OnEnter()
         {
             Services.EventManager.Register<GameEnd>(OnTimeOut);
+        }
+
+        public override void Update()
+        {
+            Services.Players[0].Update();
+            Services.AIManager.Update();
         }
 
         public void OnTimeOut(AGPEvent e)
