@@ -9,10 +9,11 @@
       <e p="Assets" t="Include">
         <e p="FoulDetection.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="AgressivePlayer.cs" t="Include" />
           <e p="AIController.cs" t="Include" />
           <e p="Ball.cs" t="Include" />
           <e p="BehaviourTree.cs" t="Include" />
-          <e p="BehaviourTreePlayer.cs" t="Include" />
+          <e p="DefensivePlayer.cs" t="Include" />
           <e p="EventManager.cs" t="Include" />
           <e p="FiniteStateMachine.cs" t="Include" />
           <e p="ForcePlayer.cs" t="Include" />
