@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
 
     private Vector3 startingZone;
 
-    public FiniteStateMachine<GameManager> _fsm; 
+    public FiniteStateMachine<GameManager> _fsm;
+
+    public Ability[] allAbilities;
 
     void _InitializeServices()
     {
@@ -31,7 +33,7 @@ public class GameManager : MonoBehaviour
         Services.EventManager.Register<GoalScored>(OnGoalScored);
         Services.EventManager.Register<GameEnd>(OnGoalScored);
 
-        Services.Players = new[] {new PlayerControlled(player1, playerSpeed)};
+        Services.Players = new[] {new PlayerControlled(allAbilities,player1, playerSpeed)};
         Services.AIManager = new AIController();
         Services.AIManager.Initialize();
 

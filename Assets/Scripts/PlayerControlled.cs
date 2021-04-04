@@ -3,9 +3,10 @@
 public class PlayerControlled : Player
 {
     Rigidbody2D rigidBody2D;
-    public PlayerControlled(GameObject pl, float speed) : base(pl, speed)
+    public PlayerControlled(Ability[] abilities,GameObject pl, float speed) : base(pl, speed)
     {
         rigidBody2D = pl.GetComponent<Rigidbody2D>();
+        playerAbilities = abilities;
     }
     public override void Update()
     {
@@ -17,6 +18,15 @@ public class PlayerControlled : Player
         if (Input.GetAxis("Horizontal") != 0)
         {
             rigidBody2D.AddForce(new Vector2(Input.GetAxis("Horizontal") * speed, 0));
+        }
+
+        foreach (var ability in playerAbilities)
+        {
+            if (ability.ShouldTrigger(this))
+            {
+                ability.TriggerAbility(this);
+            }
+            ability.Update();
         }
     }
     

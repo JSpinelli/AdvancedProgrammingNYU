@@ -2,13 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="966255ee-1eb4-4bf7-8e7f-283c196cbb34" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/color_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/color_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/freeze_ball_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/freeze_ball_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/freeze_player_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/freeze_player_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/taunt_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Abilities/taunt_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/Ability.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/Ability.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/ChangeColorOnHit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/FreezeBall.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/FreezeBall.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/FreezePlayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/FoulDetection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/taunt.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/taunt.wav.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AdvancedProgrammingNYU/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AdvancedProgrammingNYU/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AdvancedProgrammingNYU/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AdvancedProgrammingNYU/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AdvancedProgrammingNYU/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AdvancedProgrammingNYU/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BehaviourTreePlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DefensivePlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BehaviourTreePlayer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DefensivePlayer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FoulDetection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FoulDetection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerControlled.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerControlled.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,11 +48,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/FoulDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScoreController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BehaviourTree.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Abilities/FreezePlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Abilities/ChangeColorOnHit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RefereeBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DefensivePlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FoulDetection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -39,15 +62,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/RestartZone.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/InputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SimplePlayer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerControlled.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Ball.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScoreController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Goal.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Services.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EventManager.cs" />
       <option value="$PROJECT_DIR$/Assets/FoulDetection.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ForcePlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/RefereeBehaviour.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BehaviourTree.cs" />
@@ -55,6 +75,15 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/AIController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/DefensivePlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AgressivePlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FoulDetection.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerControlled.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Abilities/Ability.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Abilities/Taunt.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Abilities/FreezePlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Abilities/FreezeBall.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Abilities/ChangeColorOnHit.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1oQmuQLb6pF6uraamP8gvJgKGR9" />
@@ -111,6 +140,7 @@
       <updated>1613227417829</updated>
       <workItem from="1613227441015" duration="9964000" />
       <workItem from="1613830129226" duration="9561000" />
+      <workItem from="1617545478080" duration="2578000" />
     </task>
     <servers />
   </component>
