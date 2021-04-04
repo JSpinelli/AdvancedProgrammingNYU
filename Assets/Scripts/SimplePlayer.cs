@@ -7,7 +7,7 @@ public class SimplePlayer : Player
 
     }
 
-    public override void Update(){
+    public override void Behaviours(){
         _gameObject.transform.position = Vector3.Lerp(_gameObject.transform.position, ball.transform.position, speed);
     }
 }

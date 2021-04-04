@@ -7,14 +7,16 @@ using UnityEngine;
 public class AIController
 {
     private List<Player> _players;
+    private Ability[] abilities;
 
     #region Lifecycle Management
     
     public void Initialize()
     {
+        abilities = Services.gameManager.allAbilities;
         _players = new List<Player>();
         //_players.Add(new ForcePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed));
-        _players.Add(new DefensivePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed));
+        _players.Add(new DefensivePlayer(Services.gameManager.player2,Services.gameManager.movementSpeed,abilities[0]));
     }
 
     public Player GetClosestAI(Ball ball)

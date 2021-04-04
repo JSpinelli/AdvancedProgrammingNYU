@@ -8,7 +8,7 @@ public class PlayerControlled : Player
     {
         rigidBody2D = pl.GetComponent<Rigidbody2D>();
     }
-    public override void Update()
+    public override void Behaviours()
     {
 
         if (Input.GetAxis("Vertical") != 0)
@@ -18,15 +18,6 @@ public class PlayerControlled : Player
         if (Input.GetAxis("Horizontal") != 0)
         {
             rigidBody2D.AddForce(new Vector2(Input.GetAxis("Horizontal") * speed, 0));
-        }
-
-        foreach (var ability in playerAbilities)
-        {
-            if (ability.ShouldTrigger(this))
-            {
-                ability.TriggerAbility(this);
-            }
-            ability.UpdateAbility(this);
         }
     }
 

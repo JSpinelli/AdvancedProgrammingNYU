@@ -6,7 +6,7 @@ public class DefensivePlayer : Player
     private Tree<DefensivePlayer> tree;
     Rigidbody2D rigidBody2D;
 
-    public DefensivePlayer(GameObject pl, float speed) : base(pl, speed)
+    public DefensivePlayer(GameObject pl, float speed, Ability ability) : base(pl, speed,new []{ability})
     {
         rigidBody2D = pl.GetComponent<Rigidbody2D>();
         
@@ -43,8 +43,16 @@ public class DefensivePlayer : Player
         return true;
     }
 
-    public override void Update()
+    public override void Behaviours()
     {
         tree.Update(this);
+        foreach (var ability in playerAbilities)
+        {
+            if (ability.ShouldTrigger(this))
+            {
+                ability.TriggerAbility(this);
+            }
+            ability.UpdateAbility(this);
+        }
     }
 }

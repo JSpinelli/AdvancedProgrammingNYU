@@ -48,5 +48,28 @@ public abstract class Player
         UnityEngine.Object.Destroy(_gameObject);
     }
 
-    public abstract void Update();
+    public void GetSurroundings()
+    {
+    }
+
+    public abstract void Behaviours();
+
+    public void Abilities()
+    {
+        foreach (var ability in playerAbilities)
+        {
+            if (ability.ShouldTrigger(this))
+            {
+                ability.TriggerAbility(this);
+            }
+            ability.UpdateAbility(this);
+        }
+    }
+
+    public void Update()
+    {
+        GetSurroundings();
+        Behaviours();
+        Abilities();
+    }
 }

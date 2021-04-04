@@ -16,7 +16,6 @@ public class Taunt : Ability
 
     public override void TriggerAbility(Player p)
     {
-        Debug.Log("Triggered");
         //Services.audioSource.clip = (AudioClip) Resources.Load("Sounds/taunt");
         Services.audioSource.Play();
     }

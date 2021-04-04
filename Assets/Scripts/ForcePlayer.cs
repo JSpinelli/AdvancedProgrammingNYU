@@ -6,7 +6,7 @@ public class ForcePlayer : Player
     public ForcePlayer(GameObject pl, float speed):base(pl, speed){
         rigidBody2D = pl.GetComponent<Rigidbody2D>();
     }
-    public override void Update(){
+    public override void Behaviours(){
 
         Vector3 force = Vector3.Normalize(ball.transform.position - _gameObject.transform.position);
         rigidBody2D.AddForce(force*Services.gameManager.movementSpeed);

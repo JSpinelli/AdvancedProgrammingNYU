@@ -45,7 +45,7 @@ public class AgressivePlayer : Player
         return true;
     }
 
-    public override void Update()
+    public override void Behaviours()
     {
         tree.Update(this);
     }
