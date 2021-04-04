@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public float durationOfMatch = 10f;
 
     private Vector3 startingZone;
+    
+    public AudioSource playerAudioSource;
 
     public FiniteStateMachine<GameManager> _fsm;
 
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
         Services.AIManager.Initialize();
 
         Services.Input = new InputManager();
+
+        Services.audioSource = playerAudioSource;
 
         Services.RefereeBehaviour = new RefereeBehaviour(referee,refereeDistance);
     }

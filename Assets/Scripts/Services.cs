@@ -11,6 +11,17 @@ public static class Services {
         }
         set => _gameManager = value;
     }
+    	
+    private static AudioSource _audioSource;
+    public static AudioSource audioSource
+    {
+        get
+        {
+            Debug.Assert(_audioSource != null);
+            return _audioSource;
+        }
+        set => _audioSource = value;
+    }
     
     private static InputManager _input;
     public static InputManager Input

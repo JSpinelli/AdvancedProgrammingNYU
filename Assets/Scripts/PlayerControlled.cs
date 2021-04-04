@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerControlled : Player
 {
     Rigidbody2D rigidBody2D;
-    public PlayerControlled(Ability[] abilities,GameObject pl, float speed) : base(pl, speed)
+    public PlayerControlled(Ability[] abilities,GameObject pl, float speed) : base(pl, speed, abilities)
     {
         rigidBody2D = pl.GetComponent<Rigidbody2D>();
-        playerAbilities = abilities;
     }
     public override void Update()
     {
@@ -26,10 +26,10 @@ public class PlayerControlled : Player
             {
                 ability.TriggerAbility(this);
             }
-            ability.Update();
+            ability.UpdateAbility(this);
         }
     }
-    
+
     //Using InputManager
     // public override void Update()
     // {

@@ -4,18 +4,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Freeze Player")]
 public class FreezePlayer : Ability
 {
+    public override void SetUpAbility(Player p)
+    {
+        
+    }
+
     public override bool ShouldTrigger(Player p)
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     public override void TriggerAbility(Player p)
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public override void Update()
+    public override void UpdateAbility(Player p)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

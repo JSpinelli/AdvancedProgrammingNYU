@@ -4,6 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Taunt")]
 public class Taunt : Ability
 {
+    public override void SetUpAbility(Player p)
+    {
+        
+    }
+
     public override bool ShouldTrigger(Player p)
     {
         return Input.GetKeyDown(KeyCode.T);
@@ -11,11 +16,12 @@ public class Taunt : Ability
 
     public override void TriggerAbility(Player p)
     {
-        p.playerAudioSource.clip = (AudioClip) Resources.Load("Sounds/taunt");
-        p.playerAudioSource.Play();
+        Debug.Log("Triggered");
+        //Services.audioSource.clip = (AudioClip) Resources.Load("Sounds/taunt");
+        Services.audioSource.Play();
     }
 
-    public override void Update()
+    public override void UpdateAbility(Player p)
     {
         
     }

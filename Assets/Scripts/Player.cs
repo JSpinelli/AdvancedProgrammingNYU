@@ -9,28 +9,35 @@ public abstract class Player
     protected float speed;
     protected GameObject ball;
 
-    public AudioSource playerAudioSource;
     public SpriteShapeRenderer playerRenderer;
-    
+
     public Vector3 position;
     public bool playerTeam;
 
-    public Ability[] playerAbilities;
+    public List<Ability> playerAbilities;
 
-    public bool gotHit = false;
-
-    protected Player(GameObject pl, float speed){
+    protected Player(GameObject pl, float speed, Ability[] abilities = null)
+    {
         _gameObject = pl;
         this.speed = speed;
         this.ball = Services.gameManager.ball;
         position = pl.transform.position;
         playerRenderer = _gameObject.GetComponent<SpriteShapeRenderer>();
+        playerAbilities = new List<Ability>();
+        if (abilities != null)
+            foreach (var ability in abilities)
+            {
+                Ability toAdd = Object.Instantiate(ability);
+                toAdd.SetUpAbility(this);
+                playerAbilities.Add(toAdd);
+            }
     }
 
     public void SetTeam(bool team)
     {
         playerTeam = team;
-    }    
+    }
+
     public void SetPosition(Vector3 pos)
     {
         position = pos;
